@@ -175,6 +175,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">C&#43;&#43; Mysql null 引发的血案
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>代码 出错代码段 bool CGameServer::getAccountInfoByUserId(int user_id, UserAccountData&amp; data) { if (connectToLocalDB()) { log_error(&#34;connect to db failed&#34;); return false; } TLIB_DB_LINK *pTempDBLink = &amp;m_stLDBLink; snprintf(pTempDBLink-&gt;sQuery[0], sizeof(pTempDBLink-&gt;sQuery[0]), &#34;select bind_mark, account, password, state, device_mark, country, tunnel, \ register_version, transfer_code, bind_equipment from account_data where \ user_id=%d&#34;, user_id); //...... if (pTempDBLink-&gt;stRow[i]) { data._transfer_code = pTempDBLink-&gt;stRow[i&#43;&#43;]; } if (pTempDBLink-&gt;stRow[i]) { data._bind_equipment = atoi(pTempDBLink-&gt;stRow[i&#43;&#43;]); } //...... ...</p>
+  </div>
+  <footer class="entry-footer">2020-06-03 · 3 分钟 · 约 977 字</footer>
+  <a class="entry-link" aria-label="post link to C&#43;&#43; Mysql null 引发的血案" href="https://luojiego.com/posts/cpp-null/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">管理后台关于时间的“补丁”
     </h2>
   </header>
