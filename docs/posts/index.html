@@ -184,7 +184,7 @@
 &gt; /opt/caddy &gt;&gt;&gt; ❯ ls Caddyfile docker-compose.yml version: &#34;3.7&#34; services: caddy: image: caddy:2-alpine container_name: caddy restart: unless-stopped ports: - &#34;80:80&#34; - &#34;443:443&#34; - &#34;443:443/udp&#34; # 必须映射 UDP 端口以启用 HTTP/3 性能加速 volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy_data:/data # 极其关键：Caddy 自动申请的证书、私钥存放于此，遗失会导致高频申请触发限流 - caddy_config:/config # 存放 Caddy 运行时的集群状态及临时配置 - /var/www/html/dist:/var/www/html/dist # 我在此处放了一个 GM 后台代码 volumes: caddy_data: external: false caddy_config: external: false 问题一：我使用 vim 修改了 /opt/caddy/Caddfile 之后，使用 sudo docker compose exec -w /etc/caddy caddy caddy reload 重新加载会生效吗？
 ...</p>
   </div>
-  <footer class="entry-footer">2026-06-05 · 9 分钟 · 约 4449 字</footer>
+  <footer class="entry-footer">2026-06-05 · 9 分钟 · 约 4446 字</footer>
   <a class="entry-link" aria-label="post link to 由 Docker 的“坑”深入理解 Linux Inode 机制" href="https://blog.luojie.net/posts/why-docker-volume-mounts-fail-on-reload/"></a>
 </article>
 
