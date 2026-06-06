@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>成长 on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/%E6%88%90%E9%95%BF/</link>
+    <link>https://blog.luojie.net/tags/%E6%88%90%E9%95%BF/</link>
     <description>Recent content in 成长 on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 27 Dec 2021 19:17:02 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/%E6%88%90%E9%95%BF/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/%E6%88%90%E9%95%BF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的 Go 语言学习之路</title>
-      <link>https://luojiego.com/posts/geek-time-go-first-course-share/</link>
+      <link>https://blog.luojie.net/posts/geek-time-go-first-course-share/</link>
       <pubDate>Mon, 27 Dec 2021 19:17:02 +0800</pubDate>
-      <guid>https://luojiego.com/posts/geek-time-go-first-course-share/</guid>
+      <guid>https://blog.luojie.net/posts/geek-time-go-first-course-share/</guid>
       <description>&lt;p&gt;&lt;strong&gt;以下内容是我在 &lt;a href=&#34;https://time.geekbang.org/column/intro/100093501&#34;&gt;Tony Bai · Go 语言第一课&lt;/a&gt;的分享&lt;a href=&#34;https://time.geekbang.org/column/article/472588&#34;&gt;用户故事｜罗杰：我的Go语言学习之路&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
 你好，我是罗杰，目前在一家游戏公司担任后端开发主程。今天，我想跟你分享一下我学习Go的一些经历，如果你还是一个Go新人，希望我的这些经历，能给你带来一些启发和帮助。&lt;/p&gt;
 &lt;p&gt;说起来，我接触Go语言已经很久了，但前面好多次都没真正学起来。&lt;/p&gt;
@@ -20,9 +20,9 @@
     </item>
     <item>
       <title>改变从学习开始</title>
-      <link>https://luojiego.com/posts/summary-share/</link>
+      <link>https://blog.luojie.net/posts/summary-share/</link>
       <pubDate>Fri, 19 Nov 2021 13:36:10 +0800</pubDate>
-      <guid>https://luojiego.com/posts/summary-share/</guid>
+      <guid>https://blog.luojie.net/posts/summary-share/</guid>
       <description>&lt;p&gt;&lt;strong&gt;以下内容是我在 &lt;a href=&#34;https://time.geekbang.org/column/intro/100085301?tab=catalog&#34;&gt;陈天 · Rust 编程第一课&lt;/a&gt;的分享&lt;a href=&#34;https://time.geekbang.org/column/article/445818?cid=100085301&#34;&gt;用户故事｜绝望之谷：罗杰，改变从学习开始&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;你好，我是罗杰，目前在一家游戏公司担任后端开发主程。&lt;/p&gt;
 &lt;p&gt;到现在我也快工作十年了，作为一个从小学习能力很一般的人，这中间的打怪升级史可以说是相当惨痛。&lt;/p&gt;
@@ -30,9 +30,9 @@
     </item>
     <item>
       <title>遇见 Go 夜读</title>
-      <link>https://luojiego.com/posts/meet-ngiht-go/</link>
+      <link>https://blog.luojie.net/posts/meet-ngiht-go/</link>
       <pubDate>Tue, 07 Apr 2020 00:06:15 +0800</pubDate>
-      <guid>https://luojiego.com/posts/meet-ngiht-go/</guid>
+      <guid>https://blog.luojie.net/posts/meet-ngiht-go/</guid>
       <description>&lt;h1 id=&#34;更加清晰的人生方向&#34;&gt;更加清晰的人生方向&lt;/h1&gt;
 &lt;h2 id=&#34;不再迷茫&#34;&gt;不再迷茫&lt;/h2&gt;
 &lt;p&gt;​		在人生的第 30 个年头，终于明白人生的意义。19 年 9 月底，公司唯一一款产品因为一些原因被苹果下架。梦想破灭，我几乎要对游戏失去了兴趣，有想过放弃现在的环境，重新选择。但是，在西安这个比较小的环境里面，我也清楚的知道，没有其它的选择。虽然很失望，但是起码和老婆孩子在一起，每天下班回到家，儿子一直不停的叫着“爸爸”，也没有那么累了。&lt;/p&gt;

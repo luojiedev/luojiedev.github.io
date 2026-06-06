@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C&#43;&#43; on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/c&#43;&#43;/</link>
+    <link>https://blog.luojie.net/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Oct 2021 07:47:20 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>除 0 真的会 panic 吗？</title>
-      <link>https://luojiego.com/posts/divied-zero-panic/</link>
+      <link>https://blog.luojie.net/posts/divied-zero-panic/</link>
       <pubDate>Sat, 16 Oct 2021 07:47:20 +0800</pubDate>
-      <guid>https://luojiego.com/posts/divied-zero-panic/</guid>
+      <guid>https://blog.luojie.net/posts/divied-zero-panic/</guid>
       <description>&lt;p&gt;某天，小伙伴反馈说程序 panic 在一个比较诡异的地方，差不多是下面的代码。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Point&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;		&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;X&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;float32&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -27,9 +27,9 @@
     </item>
     <item>
       <title>C&#43;&#43; Mysql null 引发的血案</title>
-      <link>https://luojiego.com/posts/cpp-null/</link>
+      <link>https://blog.luojie.net/posts/cpp-null/</link>
       <pubDate>Wed, 03 Jun 2020 09:11:51 +0800</pubDate>
-      <guid>https://luojiego.com/posts/cpp-null/</guid>
+      <guid>https://blog.luojie.net/posts/cpp-null/</guid>
       <description>&lt;h1 id=&#34;代码&#34;&gt;代码&lt;/h1&gt;
 &lt;h2 id=&#34;出错代码段&#34;&gt;出错代码段&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CGameServer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getAccountInfoByUserId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;user_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UserAccountData&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;                                                                                          

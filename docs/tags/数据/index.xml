@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>数据 on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/%E6%95%B0%E6%8D%AE/</link>
+    <link>https://blog.luojie.net/tags/%E6%95%B0%E6%8D%AE/</link>
     <description>Recent content in 数据 on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Jan 2026 21:23:42 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的编码统计</title>
-      <link>https://luojiego.com/posts/my-coding/</link>
+      <link>https://blog.luojie.net/posts/my-coding/</link>
       <pubDate>Thu, 08 Jan 2026 21:23:42 +0800</pubDate>
-      <guid>https://luojiego.com/posts/my-coding/</guid>
+      <guid>https://blog.luojie.net/posts/my-coding/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://wakatime.com/@3e8762fa-affe-4081-ba06-0ba2ad661306&#34;&gt;&lt;img alt=&#34;wakatime&#34; loading=&#34;lazy&#34; src=&#34;https://wakatime.com/badge/user/3e8762fa-affe-4081-ba06-0ba2ad661306.svg&#34;&gt;&lt;/a&gt;&lt;br&gt;
 我是 2013 年开始工作的，但是是从 2015 年 7 月 16 日开始使用 &lt;a href=&#34;https://wakatime.com/@RogerLuo&#34;&gt;wakatime&lt;/a&gt; 统计我的编码数据的。之前几乎都是使用 C++，在 2016 年中有近八个月的时间在华为，也没有统计。粗略计算，按照 1500 个小时计算 C++ 的编码时间。&lt;br&gt;
 后续每年在 Wakatime 年度数据出来，我会及时更新一下统计数据。&lt;/p&gt;
@@ -122,9 +122,9 @@
     </item>
     <item>
       <title>基于休闲合成游戏的数据同步方案实践</title>
-      <link>https://luojiego.com/posts/prediction-rollback-with-merge-games/</link>
+      <link>https://blog.luojie.net/posts/prediction-rollback-with-merge-games/</link>
       <pubDate>Fri, 27 Dec 2024 06:45:15 +0800</pubDate>
-      <guid>https://luojiego.com/posts/prediction-rollback-with-merge-games/</guid>
+      <guid>https://blog.luojie.net/posts/prediction-rollback-with-merge-games/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;本文将以一个休闲合成类游戏的实践经验为切入点，探讨游戏开发中的数据同步方案。在这个合成游戏中，玩家需要在地图上移动和合成物体，涉及复杂的验证逻辑和数据同步问题。&lt;/p&gt;
 &lt;h2 id=&#34;一合成游戏的核心玩法&#34;&gt;一、合成游戏的核心玩法&lt;/h2&gt;

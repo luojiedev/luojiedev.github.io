@@ -10,17 +10,17 @@
 
 <meta name="description" content="Roger 的个人博客">
 <meta name="author" content="Roger">
-<link rel="canonical" href="https://luojiego.com/">
+<link rel="canonical" href="https://blog.luojie.net/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.0e5d6dc76b835c8dd8952a3e208138272856ca7781a17e058123153dbcd6a4c8.css" integrity="sha256-Dl1tx2uDXI3YlSo&#43;IIE4JyhWyneBoX4FgSMVPbzWpMg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://luojiego.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://luojiego.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://luojiego.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://luojiego.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://luojiego.com/safari-pinned-tab.svg">
+<link rel="icon" href="https://blog.luojie.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.luojie.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.luojie.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.luojie.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.luojie.net/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://luojiego.com/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://luojiego.com/">
+<link rel="alternate" type="application/rss+xml" href="https://blog.luojie.net/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://blog.luojie.net/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,7 +86,7 @@
           gtag('js', new Date());
           gtag('config', 'G-BEV0Q1G3S5');
         }
-      </script><meta property="og:url" content="https://luojiego.com/">
+      </script><meta property="og:url" content="https://blog.luojie.net/">
   <meta property="og:site_name" content="Roger&#39;s Blog">
   <meta property="og:title" content="Roger&#39;s Blog">
   <meta property="og:description" content="Roger 的个人博客">
@@ -101,9 +101,9 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Roger's Blog",
-  "url": "https://luojiego.com/",
+  "url": "https://blog.luojie.net/",
   "description": "Roger 的个人博客",
-  "logo": "https://luojiego.com/favicon.ico",
+  "logo": "https://blog.luojie.net/favicon.ico",
   "sameAs": [
       "https://github.com/luojiego", "https://twitter.com/luojie710", "mailto:marked.41centric@icloud.com"
   ]
@@ -114,7 +114,7 @@
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://luojiego.com/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
+            <a href="https://blog.luojie.net/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -140,17 +140,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://luojiego.com/about/" title="关于">
+                <a href="https://blog.luojie.net/about/" title="关于">
                     <span>关于</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/tags/" title="标签">
+                <a href="https://blog.luojie.net/tags/" title="标签">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/search/" title="搜索">
+                <a href="https://blog.luojie.net/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
@@ -158,6 +158,20 @@
     </nav>
 </header>
 <main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">如何删除 MySQL 表中 2.5 亿条数据？
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>为什么会有 2.5 亿条数据 运营需求，需要提供查询用户登录的记录。
+我一思索，这简单呀，就设计了如下的数据表。
+desc login_record; &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43; | Field | Type | Null | Key | Default | Extra | &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43; | user_id | int(10) unsigned | NO | MUL | NULL | | | ip | varchar(40) | YES | | | | | device_mark | varchar(500) | NO | | | | | time | timestamp | NO | MUL | CURRENT_TIMESTAMP | | &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;--&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43;&#43;&#43;&#43;&#43;&#43;&#43;-&#43; ...</p>
+  </div>
+  <footer class="entry-footer">2021-05-25 · 5 分钟 · 约 2659 字</footer>
+  <a class="entry-link" aria-label="post link to 如何删除 MySQL 表中 2.5 亿条数据？" href="https://blog.luojie.net/posts/delete-mysql-250-million-items/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -169,7 +183,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2021-01-17 · 6 分钟 · 约 3256 字</footer>
-  <a class="entry-link" aria-label="post link to Filco Minila Air 使用体验" href="https://luojiego.com/posts/filco-minila-air-experience/"></a>
+  <a class="entry-link" aria-label="post link to Filco Minila Air 使用体验" href="https://blog.luojie.net/posts/filco-minila-air-experience/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -188,7 +202,7 @@ AWS 云市场的份额高达 45 %。
 ...</p>
   </div>
   <footer class="entry-footer">2020-12-27 · 5 分钟 · 约 2683 字</footer>
-  <a class="entry-link" aria-label="post link to AWS re-invent 12-23" href="https://luojiego.com/posts/aws-re-invent-12-23/"></a>
+  <a class="entry-link" aria-label="post link to AWS re-invent 12-23" href="https://blog.luojie.net/posts/aws-re-invent-12-23/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -202,7 +216,7 @@ AWS 的安全责任：计算，存储，数据库和网络以及 全球基础设
 安全可视化和安全可控 服务之间高度集成，达到自动化布署 Macie 。。 建立隐私数据保护 丰富的使用场景 ...</p>
   </div>
   <footer class="entry-footer">2020-10-25 · 3 分钟 · 约 1637 字</footer>
-  <a class="entry-link" aria-label="post link to AWS secrity day 10 月 23 日笔记" href="https://luojiego.com/posts/aws-secrity-day/"></a>
+  <a class="entry-link" aria-label="post link to AWS secrity day 10 月 23 日笔记" href="https://blog.luojie.net/posts/aws-secrity-day/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -214,7 +228,7 @@ AWS 的安全责任：计算，存储，数据库和网络以及 全球基础设
     <p>Go 代码 package main import ( &#34;fmt&#34; &#34;math&#34; ) func main() { var count uint32 fmt.Printf(&#34;count: %d\n&#34;, count) fmt.Printf(&#34;count - 1: %d\n&#34;, count - 1) // num := math.Pow(2, float64(count-1)) fmt.Printf(&#34;math.Pow(2, float64(count-1)): %f\n&#34;, math.Pow(2, float64(count-1))) fmt.Printf(&#34;int(math.Pow(2, float64(count-1))): %d\n&#34;, int(math.Pow(2, float64(count-1)))) fmt.Printf(&#34;uint32(math.Pow(2, float64(count-1))): %d\n&#34;, uint32(math.Pow(2, float64(count-1)))) fmt.Printf(&#34;int32(math.Pow(2, float64(count-1))): %d\n&#34;, int32(math.Pow(2, float64(count-1)))) fmt.Printf(&#34;uint64(math.Pow(2, float64(count-1))): %d\n&#34;, uint64(math.Pow(2, float64(count-1)))) fmt.Printf(&#34;int64(pow(2,1023): %d\n&#34;, int64(math.Pow(2, 1023))) fmt.Printf(&#34;uint64(pow(2,1023): %d\n&#34;, uint64(math.Pow(2, 1023))) } ...</p>
   </div>
   <footer class="entry-footer">2020-09-20 · 4 分钟 · 约 1772 字</footer>
-  <a class="entry-link" aria-label="post link to Go 中&#34;坑爹&#34;的类型转换" href="https://luojiego.com/posts/the-convert-in-go/"></a>
+  <a class="entry-link" aria-label="post link to Go 中&#34;坑爹&#34;的类型转换" href="https://blog.luojie.net/posts/the-convert-in-go/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -227,7 +241,7 @@ AWS 的安全责任：计算，存储，数据库和网络以及 全球基础设
 ...</p>
   </div>
   <footer class="entry-footer">2020-08-29 · 5 分钟 · 约 2586 字</footer>
-  <a class="entry-link" aria-label="post link to 为什么程序员更应该支持正版软件？" href="https://luojiego.com/posts/why-should-programmers-support-genuine-software/"></a>
+  <a class="entry-link" aria-label="post link to 为什么程序员更应该支持正版软件？" href="https://blog.luojie.net/posts/why-should-programmers-support-genuine-software/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -242,7 +256,7 @@ AWS 的安全责任：计算，存储，数据库和网络以及 全球基础设
 ...</p>
   </div>
   <footer class="entry-footer">2020-07-01 · 4 分钟 · 约 1947 字</footer>
-  <a class="entry-link" aria-label="post link to MantisBT 安装" href="https://luojiego.com/posts/install-mantisbt/"></a>
+  <a class="entry-link" aria-label="post link to MantisBT 安装" href="https://blog.luojie.net/posts/install-mantisbt/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -257,7 +271,7 @@ Mac 拷贝代理地址 如图，右键选择菜单项，地址就会被拷贝，
 ...</p>
   </div>
   <footer class="entry-footer">2020-07-01 · 5 分钟 · 约 2513 字</footer>
-  <a class="entry-link" aria-label="post link to V2ray 终端代理" href="https://luojiego.com/posts/v2ray-proxy-setting/"></a>
+  <a class="entry-link" aria-label="post link to V2ray 终端代理" href="https://blog.luojie.net/posts/v2ray-proxy-setting/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -271,7 +285,7 @@ Mac 拷贝代理地址 如图，右键选择菜单项，地址就会被拷贝，
 ...</p>
   </div>
   <footer class="entry-footer">2020-06-27 · 6 分钟 · 约 3324 字</footer>
-  <a class="entry-link" aria-label="post link to 谈谈我对 Mac 的看法" href="https://luojiego.com/posts/about-mac/"></a>
+  <a class="entry-link" aria-label="post link to 谈谈我对 Mac 的看法" href="https://blog.luojie.net/posts/about-mac/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -288,35 +302,21 @@ Mac 拷贝代理地址 如图，右键选择菜单项，地址就会被拷贝，
 ...</p>
   </div>
   <footer class="entry-footer">2020-06-27 · 2 分钟 · 约 960 字</footer>
-  <a class="entry-link" aria-label="post link to Mac 重装之后,删除容器中的其它卷宗" href="https://luojiego.com/posts/mac-delete-container/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">go-micro-broker-kafka-demo
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>困惑 有点小心动要研究一下 go-micro 的 broker，正好在研究 kafka，想找个 demo 尝试一下，但是真让人头大，并没有找到很容易上手的案例，于是自己码一篇来帮助有兴趣研究的朋友。
-V2 版本 代码 在 https://github.com/micro/examples v2 版本下面的 broker/main.go 中增加了一行代码
-_ &#34;github.com/micro/go-plugins/broker/kafka/v2&#34; ...</p>
-  </div>
-  <footer class="entry-footer">2020-06-10 · 4 分钟 · 约 1025 字</footer>
-  <a class="entry-link" aria-label="post link to go-micro-broker-kafka-demo" href="https://luojiego.com/posts/go-micro-broker-kafka-demo/"></a>
+  <a class="entry-link" aria-label="post link to Mac 重装之后,删除容器中的其它卷宗" href="https://blog.luojie.net/posts/mac-delete-container/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://luojiego.com/page/7/">
+    <a class="prev" href="https://blog.luojie.net/page/7/">
       «&nbsp;Prev&nbsp;
     </a>
-    <a class="next" href="https://luojiego.com/page/9/">Next&nbsp;&nbsp;»
+    <a class="next" href="https://blog.luojie.net/page/9/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://luojiego.com/">Roger&#39;s Blog</a></span> · 
+        <span>&copy; 2026 <a href="https://blog.luojie.net/">Roger&#39;s Blog</a></span> · 
 
     <span>
         Powered by

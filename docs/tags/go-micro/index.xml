@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Go-Micro on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/go-micro/</link>
+    <link>https://blog.luojie.net/tags/go-micro/</link>
     <description>Recent content in Go-Micro on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 10 Jun 2020 08:13:33 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/go-micro/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/go-micro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>go-micro-broker-kafka-demo</title>
-      <link>https://luojiego.com/posts/go-micro-broker-kafka-demo/</link>
+      <link>https://blog.luojie.net/posts/go-micro-broker-kafka-demo/</link>
       <pubDate>Wed, 10 Jun 2020 08:13:33 +0800</pubDate>
-      <guid>https://luojiego.com/posts/go-micro-broker-kafka-demo/</guid>
+      <guid>https://blog.luojie.net/posts/go-micro-broker-kafka-demo/</guid>
       <description>&lt;h1 id=&#34;困惑&#34;&gt;困惑&lt;/h1&gt;
 &lt;p&gt;有点小心动要研究一下 go-micro 的 broker，正好在研究 kafka，想找个 demo 尝试一下，但是真让人头大，并没有找到很容易上手的案例，于是自己码一篇来帮助有兴趣研究的朋友。&lt;/p&gt;
 &lt;h1 id=&#34;v2-版本&#34;&gt;V2 版本&lt;/h1&gt;

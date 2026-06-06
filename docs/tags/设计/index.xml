@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>设计 on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/%E8%AE%BE%E8%AE%A1/</link>
+    <link>https://blog.luojie.net/tags/%E8%AE%BE%E8%AE%A1/</link>
     <description>Recent content in 设计 on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Dec 2024 06:45:15 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于休闲合成游戏的数据同步方案实践</title>
-      <link>https://luojiego.com/posts/prediction-rollback-with-merge-games/</link>
+      <link>https://blog.luojie.net/posts/prediction-rollback-with-merge-games/</link>
       <pubDate>Fri, 27 Dec 2024 06:45:15 +0800</pubDate>
-      <guid>https://luojiego.com/posts/prediction-rollback-with-merge-games/</guid>
+      <guid>https://blog.luojie.net/posts/prediction-rollback-with-merge-games/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;本文将以一个休闲合成类游戏的实践经验为切入点，探讨游戏开发中的数据同步方案。在这个合成游戏中，玩家需要在地图上移动和合成物体，涉及复杂的验证逻辑和数据同步问题。&lt;/p&gt;
 &lt;h2 id=&#34;一合成游戏的核心玩法&#34;&gt;一、合成游戏的核心玩法&lt;/h2&gt;
@@ -33,9 +33,9 @@
     </item>
     <item>
       <title>游戏 GM 指令系统设计与优化指南：从复杂到简单的演进之路</title>
-      <link>https://luojiego.com/posts/gm-add-item-design/</link>
+      <link>https://blog.luojie.net/posts/gm-add-item-design/</link>
       <pubDate>Mon, 23 Dec 2024 23:07:50 +0800</pubDate>
-      <guid>https://luojiego.com/posts/gm-add-item-design/</guid>
+      <guid>https://blog.luojie.net/posts/gm-add-item-design/</guid>
       <description>&lt;h2 id=&#34;1-系统概述&#34;&gt;1. 系统概述&lt;/h2&gt;
 &lt;p&gt;本文档详细描述了游戏 GM 指令系统的设计演进过程，重点关注如何通过持续优化提升使用体验。该系统主要用于管理游戏中的道具和货币添加操作，展现了从最初的复杂设计到最终的智能化处理的完整优化历程。&lt;/p&gt;
 &lt;h2 id=&#34;2-系统演进阶段&#34;&gt;2. 系统演进阶段&lt;/h2&gt;

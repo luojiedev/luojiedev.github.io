@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Design on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/design/</link>
+    <link>https://blog.luojie.net/tags/design/</link>
     <description>Recent content in Design on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 22 Apr 2026 21:15:28 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>《黑客与画家》 读书笔记</title>
-      <link>https://luojiego.com/posts/hackers-with-painters-notes/</link>
+      <link>https://blog.luojie.net/posts/hackers-with-painters-notes/</link>
       <pubDate>Wed, 22 Apr 2026 21:15:28 +0800</pubDate>
-      <guid>https://luojiego.com/posts/hackers-with-painters-notes/</guid>
+      <guid>https://blog.luojie.net/posts/hackers-with-painters-notes/</guid>
       <description>&lt;p&gt;我与这本书的渊缘始于刚开始工作的半个月，要熟悉环境，还要熟悉那么多的代码，压力山大，连续有半个月晚上失眠睡不着觉，有个晚上看完了这本书，但是唯一有印象的是作者提到了 Lisp 这门语言，其它相关的内容就是大家都“黑客”概念的误解。&lt;/p&gt;
 &lt;p&gt;“黑客”一词在高中的时候就听说，对于农村家庭的孩子，电脑都接触不到。有天放学的时候，准备去网吧。同桌问我，你去干啥，我说，去网吧，我准备要成为一名“黑客”。但是当时的我，根本就不清楚这意味着什么。&lt;/p&gt;
 &lt;p&gt;第一次高考完，成绩相当糟糕，只能让专科。因为高三都跟女朋友谈恋爱了（她现在是我媳妇），当时全部报的志愿都是计算机专业。但是最后选择了复读，第二年倒是听了堂姐的话，报了大连外国语的英语相关专业，但是没被录取，最后又回到了软件行业。我当时就觉得我适合干这行，但是具体是什么样子的，我根本不知道。&lt;/p&gt;

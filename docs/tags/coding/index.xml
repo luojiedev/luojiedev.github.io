@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Coding on Roger&#39;s Blog</title>
-    <link>https://luojiego.com/tags/coding/</link>
+    <link>https://blog.luojie.net/tags/coding/</link>
     <description>Recent content in Coding on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Jan 2026 21:23:42 +0800</lastBuildDate>
-    <atom:link href="https://luojiego.com/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.luojie.net/tags/coding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>我的编码统计</title>
-      <link>https://luojiego.com/posts/my-coding/</link>
+      <link>https://blog.luojie.net/posts/my-coding/</link>
       <pubDate>Thu, 08 Jan 2026 21:23:42 +0800</pubDate>
-      <guid>https://luojiego.com/posts/my-coding/</guid>
+      <guid>https://blog.luojie.net/posts/my-coding/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://wakatime.com/@3e8762fa-affe-4081-ba06-0ba2ad661306&#34;&gt;&lt;img alt=&#34;wakatime&#34; loading=&#34;lazy&#34; src=&#34;https://wakatime.com/badge/user/3e8762fa-affe-4081-ba06-0ba2ad661306.svg&#34;&gt;&lt;/a&gt;&lt;br&gt;
 我是 2013 年开始工作的，但是是从 2015 年 7 月 16 日开始使用 &lt;a href=&#34;https://wakatime.com/@RogerLuo&#34;&gt;wakatime&lt;/a&gt; 统计我的编码数据的。之前几乎都是使用 C++，在 2016 年中有近八个月的时间在华为，也没有统计。粗略计算，按照 1500 个小时计算 C++ 的编码时间。&lt;br&gt;
 后续每年在 Wakatime 年度数据出来，我会及时更新一下统计数据。&lt;/p&gt;

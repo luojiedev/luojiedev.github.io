@@ -10,17 +10,17 @@
 
 <meta name="description" content="Roger 的个人博客">
 <meta name="author" content="Roger">
-<link rel="canonical" href="https://luojiego.com/">
+<link rel="canonical" href="https://blog.luojie.net/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.0e5d6dc76b835c8dd8952a3e208138272856ca7781a17e058123153dbcd6a4c8.css" integrity="sha256-Dl1tx2uDXI3YlSo&#43;IIE4JyhWyneBoX4FgSMVPbzWpMg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://luojiego.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://luojiego.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://luojiego.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://luojiego.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://luojiego.com/safari-pinned-tab.svg">
+<link rel="icon" href="https://blog.luojie.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.luojie.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.luojie.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.luojie.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.luojie.net/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://luojiego.com/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://luojiego.com/">
+<link rel="alternate" type="application/rss+xml" href="https://blog.luojie.net/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://blog.luojie.net/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,7 +86,7 @@
           gtag('js', new Date());
           gtag('config', 'G-BEV0Q1G3S5');
         }
-      </script><meta property="og:url" content="https://luojiego.com/">
+      </script><meta property="og:url" content="https://blog.luojie.net/">
   <meta property="og:site_name" content="Roger&#39;s Blog">
   <meta property="og:title" content="Roger&#39;s Blog">
   <meta property="og:description" content="Roger 的个人博客">
@@ -101,9 +101,9 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Roger's Blog",
-  "url": "https://luojiego.com/",
+  "url": "https://blog.luojie.net/",
   "description": "Roger 的个人博客",
-  "logo": "https://luojiego.com/favicon.ico",
+  "logo": "https://blog.luojie.net/favicon.ico",
   "sameAs": [
       "https://github.com/luojiego", "https://twitter.com/luojie710", "mailto:marked.41centric@icloud.com"
   ]
@@ -114,7 +114,7 @@
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://luojiego.com/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
+            <a href="https://blog.luojie.net/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -140,17 +140,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://luojiego.com/about/" title="关于">
+                <a href="https://blog.luojie.net/about/" title="关于">
                     <span>关于</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/tags/" title="标签">
+                <a href="https://blog.luojie.net/tags/" title="标签">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/search/" title="搜索">
+                <a href="https://blog.luojie.net/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
@@ -158,6 +158,22 @@
     </nav>
 </header>
 <main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">基于休闲合成游戏的数据同步方案实践
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 本文将以一个休闲合成类游戏的实践经验为切入点，探讨游戏开发中的数据同步方案。在这个合成游戏中，玩家需要在地图上移动和合成物体，涉及复杂的验证逻辑和数据同步问题。
+一、合成游戏的核心玩法 在这款休闲合成游戏中，玩家主要进行两种操作：
+移动物体：在地图格子间移动不同大小的物体 合成物体：将多个相同物体合成为新的物体，可能触发额外产出 这些看似简单的操作，实际上涉及复杂的验证逻辑和状态同步问题。
+二、同步方案的选择 2.1 我们的选择：预测回滚 在开发这款游戏时，我们选择了预测回滚(Prediction Rollback)同步方案。主要考虑因素是：
+需要保证游戏操作的流畅性 对网络延迟有一定的容忍度 需要严格的服务器验证 ...</p>
+  </div>
+  <footer class="entry-footer">2024-12-27 · 5 分钟 · 约 2960 字</footer>
+  <a class="entry-link" aria-label="post link to 基于休闲合成游戏的数据同步方案实践" href="https://blog.luojie.net/posts/prediction-rollback-with-merge-games/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -170,7 +186,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-12-25 · 20 分钟 · 约 11883 字</footer>
-  <a class="entry-link" aria-label="post link to 顺心而活，平静前行 - 《人间值得》读书笔记" href="https://luojiego.com/posts/never-give-up/"></a>
+  <a class="entry-link" aria-label="post link to 顺心而活，平静前行 - 《人间值得》读书笔记" href="https://blog.luojie.net/posts/never-give-up/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -184,7 +200,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-12-24 · 40 分钟 · 约 23690 字</footer>
-  <a class="entry-link" aria-label="post link to 人生是一场追求幸福的旅程 -《卓越》读书笔记" href="https://luojiego.com/posts/zhuo-yue-notes/"></a>
+  <a class="entry-link" aria-label="post link to 人生是一场追求幸福的旅程 -《卓越》读书笔记" href="https://blog.luojie.net/posts/zhuo-yue-notes/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -197,7 +213,7 @@
 2. 系统演进阶段 2.1 初始版本（add_category） 指令格式：add_category &lt;类型枚举&gt; &lt;配置表ID&gt; &lt;数量&gt; 存在问题： 参数过多，使用复杂 枚举值容易拼写错误 用户需要记忆物品类型 使用示例：add_category ITEM 10001 1 2.2 第一次优化（指令拆分） 新增指令： add_cur：专门用于添加货币 add_item：专门用于添加道具 改进点： 减少参数数量（仅需ID和数量） 明确指令用途 存在问题： 用户仍会混淆物品类型 经常出现货币指令误输入道具ID的情况 ...</p>
   </div>
   <footer class="entry-footer">2024-12-23 · 5 分钟 · 约 2830 字</footer>
-  <a class="entry-link" aria-label="post link to 游戏 GM 指令系统设计与优化指南：从复杂到简单的演进之路" href="https://luojiego.com/posts/gm-add-item-design/"></a>
+  <a class="entry-link" aria-label="post link to 游戏 GM 指令系统设计与优化指南：从复杂到简单的演进之路" href="https://blog.luojie.net/posts/gm-add-item-design/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -210,7 +226,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-12-23 · 33 分钟 · 约 19405 字</footer>
-  <a class="entry-link" aria-label="post link to 选择大于努力 -《底层逻辑》读书笔记" href="https://luojiego.com/posts/the-underlying-logic/"></a>
+  <a class="entry-link" aria-label="post link to 选择大于努力 -《底层逻辑》读书笔记" href="https://blog.luojie.net/posts/the-underlying-logic/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -224,7 +240,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-12-22 · 9 分钟 · 约 4949 字</footer>
-  <a class="entry-link" aria-label="post link to 《古都》读书笔记" href="https://luojiego.com/posts/ancient-capital/"></a>
+  <a class="entry-link" aria-label="post link to 《古都》读书笔记" href="https://blog.luojie.net/posts/ancient-capital/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -243,7 +259,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-08-06 · 64 分钟 · 约 38091 字</footer>
-  <a class="entry-link" aria-label="post link to 学习阅读的重要性 - 《阅读与写作 50 讲》笔记" href="https://luojiego.com/posts/read_and_writing_notes/"></a>
+  <a class="entry-link" aria-label="post link to 学习阅读的重要性 - 《阅读与写作 50 讲》笔记" href="https://blog.luojie.net/posts/read_and_writing_notes/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -264,7 +280,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-07-18 · 25 分钟 · 约 14156 字</footer>
-  <a class="entry-link" aria-label="post link to 多学一门理解世界的语言 - 《人人都能用英语》读书笔记" href="https://luojiego.com/posts/everyone-can-use-english-notes/"></a>
+  <a class="entry-link" aria-label="post link to 多学一门理解世界的语言 - 《人人都能用英语》读书笔记" href="https://blog.luojie.net/posts/everyone-can-use-english-notes/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -281,7 +297,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-07-10 · 64 分钟 · 约 37565 字</footer>
-  <a class="entry-link" aria-label="post link to 正确方法的重要性 - 《把时间当朋友》读书笔记" href="https://luojiego.com/posts/treat-time-as-a-friend/"></a>
+  <a class="entry-link" aria-label="post link to 正确方法的重要性 - 《把时间当朋友》读书笔记" href="https://blog.luojie.net/posts/treat-time-as-a-friend/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -298,44 +314,21 @@
 ...</p>
   </div>
   <footer class="entry-footer">2024-06-23 · 15 分钟 · 约 8878 字</footer>
-  <a class="entry-link" aria-label="post link to 追寻生命的意义 -《活出生命的意义》读书笔记" href="https://luojiego.com/posts/mans-search-for-meaning-notes/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">我生命中的光 -《你就是孩子最好的玩具》读书笔记
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>媳妇建议我的总结可以更加丰富一些，所以从这本书开始，我决定给每个总结加个标题。
-在没有遇到媳妇之前，我的世界是灰暗的，仿佛如深海，没有光照。
-在最美的年华我们相遇，她把最美的青春给了我。
-在不到 20 岁的年纪我尝试去爱一个人，这带给我生命的第一次转机。
-但人却是很难变化的，我还是太固执了。30 岁之前，媳妇要用爱、耐心和陪伴来感化我。
-19 年国庆前，媳妇给我推荐了樊登的沟通课。接下来在一个多月的时间听了樊登读书 APP 近百本书籍，我迷茫的人生又有光照进来了。
-这两次的光芒都是媳妇带给我的，时常在想，到底是上辈子做了多大的好事，才能遇到她。
-关于亲子关系，没有接触之前，我根本无法跟孩子友好相处。在听了亲子系列书籍的半年之内，我跟灿灿的相处的相当融洽。其中最具代表性的当属《你就是孩子最好的玩具》。
-当未将书籍的精髓内化之前，它的力量会维持一段时间，但会慢慢失去作用，所以我开始阅读电子书，详细而完整的读一遍。
-我知道，要跟孩子和谐相处，一本书肯定不够，我还是会抽出时间读更多的相关书籍，特别是我还有两个孩子要培养。
-这是一本相当薄的书，但却是开启亲子关系最好的钥匙。
-...</p>
-  </div>
-  <footer class="entry-footer">2024-06-18 · 43 分钟 · 约 25588 字</footer>
-  <a class="entry-link" aria-label="post link to 我生命中的光 -《你就是孩子最好的玩具》读书笔记" href="https://luojiego.com/posts/the-go-to-moms-parents-guid/"></a>
+  <a class="entry-link" aria-label="post link to 追寻生命的意义 -《活出生命的意义》读书笔记" href="https://blog.luojie.net/posts/mans-search-for-meaning-notes/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://luojiego.com/page/4/">
+    <a class="prev" href="https://blog.luojie.net/page/4/">
       «&nbsp;Prev&nbsp;
     </a>
-    <a class="next" href="https://luojiego.com/page/6/">Next&nbsp;&nbsp;»
+    <a class="next" href="https://blog.luojie.net/page/6/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://luojiego.com/">Roger&#39;s Blog</a></span> · 
+        <span>&copy; 2026 <a href="https://blog.luojie.net/">Roger&#39;s Blog</a></span> · 
 
     <span>
         Powered by

@@ -10,17 +10,17 @@
 
 <meta name="description" content="Roger 的个人博客">
 <meta name="author" content="Roger">
-<link rel="canonical" href="https://luojiego.com/">
+<link rel="canonical" href="https://blog.luojie.net/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.0e5d6dc76b835c8dd8952a3e208138272856ca7781a17e058123153dbcd6a4c8.css" integrity="sha256-Dl1tx2uDXI3YlSo&#43;IIE4JyhWyneBoX4FgSMVPbzWpMg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://luojiego.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://luojiego.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://luojiego.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://luojiego.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://luojiego.com/safari-pinned-tab.svg">
+<link rel="icon" href="https://blog.luojie.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.luojie.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.luojie.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.luojie.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.luojie.net/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://luojiego.com/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://luojiego.com/">
+<link rel="alternate" type="application/rss+xml" href="https://blog.luojie.net/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://blog.luojie.net/">
 <noscript>
     <style>
         #theme-toggle,
@@ -86,7 +86,7 @@
           gtag('js', new Date());
           gtag('config', 'G-BEV0Q1G3S5');
         }
-      </script><meta property="og:url" content="https://luojiego.com/">
+      </script><meta property="og:url" content="https://blog.luojie.net/">
   <meta property="og:site_name" content="Roger&#39;s Blog">
   <meta property="og:title" content="Roger&#39;s Blog">
   <meta property="og:description" content="Roger 的个人博客">
@@ -101,9 +101,9 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Roger's Blog",
-  "url": "https://luojiego.com/",
+  "url": "https://blog.luojie.net/",
   "description": "Roger 的个人博客",
-  "logo": "https://luojiego.com/favicon.ico",
+  "logo": "https://blog.luojie.net/favicon.ico",
   "sameAs": [
       "https://github.com/luojiego", "https://twitter.com/luojie710", "mailto:marked.41centric@icloud.com"
   ]
@@ -114,7 +114,7 @@
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://luojiego.com/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
+            <a href="https://blog.luojie.net/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -140,17 +140,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://luojiego.com/about/" title="关于">
+                <a href="https://blog.luojie.net/about/" title="关于">
                     <span>关于</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/tags/" title="标签">
+                <a href="https://blog.luojie.net/tags/" title="标签">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://luojiego.com/search/" title="搜索">
+                <a href="https://blog.luojie.net/search/" title="搜索">
                     <span>搜索</span>
                 </a>
             </li>
@@ -161,6 +161,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">go-micro-broker-kafka-demo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>困惑 有点小心动要研究一下 go-micro 的 broker，正好在研究 kafka，想找个 demo 尝试一下，但是真让人头大，并没有找到很容易上手的案例，于是自己码一篇来帮助有兴趣研究的朋友。
+V2 版本 代码 在 https://github.com/micro/examples v2 版本下面的 broker/main.go 中增加了一行代码
+_ &#34;github.com/micro/go-plugins/broker/kafka/v2&#34; ...</p>
+  </div>
+  <footer class="entry-footer">2020-06-10 · 4 分钟 · 约 1025 字</footer>
+  <a class="entry-link" aria-label="post link to go-micro-broker-kafka-demo" href="https://blog.luojie.net/posts/go-micro-broker-kafka-demo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">C&#43;&#43; Mysql null 引发的血案
     </h2>
   </header>
@@ -168,7 +182,7 @@
     <p>代码 出错代码段 bool CGameServer::getAccountInfoByUserId(int user_id, UserAccountData&amp; data) { if (connectToLocalDB()) { log_error(&#34;connect to db failed&#34;); return false; } TLIB_DB_LINK *pTempDBLink = &amp;m_stLDBLink; snprintf(pTempDBLink-&gt;sQuery[0], sizeof(pTempDBLink-&gt;sQuery[0]), &#34;select bind_mark, account, password, state, device_mark, country, tunnel, \ register_version, transfer_code, bind_equipment from account_data where \ user_id=%d&#34;, user_id); //...... if (pTempDBLink-&gt;stRow[i]) { data._transfer_code = pTempDBLink-&gt;stRow[i&#43;&#43;]; } if (pTempDBLink-&gt;stRow[i]) { data._bind_equipment = atoi(pTempDBLink-&gt;stRow[i&#43;&#43;]); } //...... ...</p>
   </div>
   <footer class="entry-footer">2020-06-03 · 3 分钟 · 约 977 字</footer>
-  <a class="entry-link" aria-label="post link to C&#43;&#43; Mysql null 引发的血案" href="https://luojiego.com/posts/cpp-null/"></a>
+  <a class="entry-link" aria-label="post link to C&#43;&#43; Mysql null 引发的血案" href="https://blog.luojie.net/posts/cpp-null/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -183,7 +197,7 @@
 ...</p>
   </div>
   <footer class="entry-footer">2020-05-20 · 5 分钟 · 约 2667 字</footer>
-  <a class="entry-link" aria-label="post link to 管理后台关于时间的“补丁”" href="https://luojiego.com/posts/background-time/"></a>
+  <a class="entry-link" aria-label="post link to 管理后台关于时间的“补丁”" href="https://blog.luojie.net/posts/background-time/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -199,7 +213,7 @@ GoLand IDE 的 25 大特色编辑功能 – 第 3 部分
 ...</p>
   </div>
   <footer class="entry-footer">2020-04-19 · 5 分钟 · 约 2641 字</footer>
-  <a class="entry-link" aria-label="post link to Goland 25 大特色编辑功能" href="https://luojiego.com/posts/goland-short-cuts/"></a>
+  <a class="entry-link" aria-label="post link to Goland 25 大特色编辑功能" href="https://blog.luojie.net/posts/goland-short-cuts/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -215,7 +229,7 @@ GoLand IDE 的 25 大特色编辑功能 – 第 3 部分
 ...</p>
   </div>
   <footer class="entry-footer">2020-04-13 · 6 分钟 · 约 3179 字</footer>
-  <a class="entry-link" aria-label="post link to 程序员“花式作死”的入职方式" href="https://luojiego.com/posts/programmer-fancy-death-onboarding-method/"></a>
+  <a class="entry-link" aria-label="post link to 程序员“花式作死”的入职方式" href="https://blog.luojie.net/posts/programmer-fancy-death-onboarding-method/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -228,7 +242,7 @@ GoLand IDE 的 25 大特色编辑功能 – 第 3 部分
 改进 每个疑惑点，最好深究原因； 重新学习，学而时习之，不亦乐乎； 学习源码，刚开始必然很难，可以从别人的讲解开始； 学习算法，之前学习的太浅，根本不能在大脑中停留太长时间； 坚持，每天早晨6点30起床，早睡早起，使用早起的时间来学习； </p>
   </div>
   <footer class="entry-footer">2020-04-09 · 1 分钟 · 约 560 字</footer>
-  <a class="entry-link" aria-label="post link to 学习目标" href="https://luojiego.com/posts/goal-md/"></a>
+  <a class="entry-link" aria-label="post link to 学习目标" href="https://blog.luojie.net/posts/goal-md/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -242,11 +256,11 @@ GoLand IDE 的 25 大特色编辑功能 – 第 3 部分
 ...</p>
   </div>
   <footer class="entry-footer">2020-04-07 · 6 分钟 · 约 3092 字</footer>
-  <a class="entry-link" aria-label="post link to 遇见 Go 夜读" href="https://luojiego.com/posts/meet-ngiht-go/"></a>
+  <a class="entry-link" aria-label="post link to 遇见 Go 夜读" href="https://blog.luojie.net/posts/meet-ngiht-go/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://luojiego.com/page/8/">
+    <a class="prev" href="https://blog.luojie.net/page/8/">
       «&nbsp;Prev&nbsp;
     </a>
   </nav>
@@ -254,7 +268,7 @@ GoLand IDE 的 25 大特色编辑功能 – 第 3 部分
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://luojiego.com/">Roger&#39;s Blog</a></span> · 
+        <span>&copy; 2026 <a href="https://blog.luojie.net/">Roger&#39;s Blog</a></span> · 
 
     <span>
         Powered by
