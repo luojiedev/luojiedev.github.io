@@ -160,6 +160,25 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。
+本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。
+一、 环境清理与准备 为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。
+1. 卸载冲突组件 执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：
+sudo apt-get remove docker docker-engine docker.io containerd runc 2. 安装基础依赖包 更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：
+sudo apt-get update sudo apt-get install ca-certificates curl gnupg -y 二、 Docker 核心组件安装（腾讯云环境优化） 由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。
+1. 配置国内镜像源 GPG 密钥 创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：
+...</p>
+  </div>
+  <footer class="entry-footer">2026-06-08 · 9 分钟 · 约 4440 字</footer>
+  <a class="entry-link" aria-label="post link to 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南" href="https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">由 Docker 的“坑”深入理解 Linux Inode 机制
     </h2>
   </header>

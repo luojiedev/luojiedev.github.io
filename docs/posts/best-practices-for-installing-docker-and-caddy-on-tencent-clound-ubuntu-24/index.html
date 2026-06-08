@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 | Roger&#39;s Blog</title>
+<meta name="keywords" content="docker, 技术, 2026">
+<meta name="description" content="本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。
+本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。
+一、 环境清理与准备
+为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。
+1. 卸载冲突组件
+执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：
+sudo apt-get remove docker docker-engine docker.io containerd runc
+2. 安装基础依赖包
+更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg -y
+二、 Docker 核心组件安装（腾讯云环境优化）
+由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。
+1. 配置国内镜像源 GPG 密钥
+创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：">
+<meta name="author" content="Roger">
+<link rel="canonical" href="https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.0e5d6dc76b835c8dd8952a3e208138272856ca7781a17e058123153dbcd6a4c8.css" integrity="sha256-Dl1tx2uDXI3YlSo&#43;IIE4JyhWyneBoX4FgSMVPbzWpMg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.luojie.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.luojie.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.luojie.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.luojie.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.luojie.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV0Q1G3S5"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-BEV0Q1G3S5');
+        }
+      </script><meta property="og:url" content="https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/">
+  <meta property="og:site_name" content="Roger&#39;s Blog">
+  <meta property="og:title" content="腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南">
+  <meta property="og:description" content="本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。
+本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。
+一、 环境清理与准备 为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。
+1. 卸载冲突组件 执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：
+sudo apt-get remove docker docker-engine docker.io containerd runc 2. 安装基础依赖包 更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：
+sudo apt-get update sudo apt-get install ca-certificates curl gnupg -y 二、 Docker 核心组件安装（腾讯云环境优化） 由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。
+1. 配置国内镜像源 GPG 密钥 创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-06-08T21:34:12+08:00">
+    <meta property="article:modified_time" content="2026-06-08T21:34:12+08:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="技术">
+    <meta property="article:tag" content="2026">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南">
+<meta name="twitter:description" content="本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。
+本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。
+一、 环境清理与准备
+为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。
+1. 卸载冲突组件
+执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：
+sudo apt-get remove docker docker-engine docker.io containerd runc
+2. 安装基础依赖包
+更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg -y
+二、 Docker 核心组件安装（腾讯云环境优化）
+由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。
+1. 配置国内镜像源 GPG 密钥
+创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.luojie.net/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南",
+      "item": "https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南",
+  "name": "腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南",
+  "description": "本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。\n本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。\n一、 环境清理与准备 为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。\n1. 卸载冲突组件 执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：\nsudo apt-get remove docker docker-engine docker.io containerd runc 2. 安装基础依赖包 更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：\nsudo apt-get update sudo apt-get install ca-certificates curl gnupg -y 二、 Docker 核心组件安装（腾讯云环境优化） 由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。\n1. 配置国内镜像源 GPG 密钥 创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：\n",
+  "keywords": [
+    "docker", "技术", "2026"
+  ],
+  "articleBody": "本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。\n本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。\n一、 环境清理与准备 为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。\n1. 卸载冲突组件 执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：\nsudo apt-get remove docker docker-engine docker.io containerd runc 2. 安装基础依赖包 更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：\nsudo apt-get update sudo apt-get install ca-certificates curl gnupg -y 二、 Docker 核心组件安装（腾讯云环境优化） 由于直接连接 Docker 官方 APT 源经常遭遇 Connection reset by peer 错误，本步骤采用 阿里云镜像源 进行替换，以确保网络无缝连接。\n1. 配置国内镜像源 GPG 密钥 创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：\nsudo install -m 0755 -d /etc/apt/keyrings curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg sudo chmod a+r /etc/apt/keyrings/docker.gpg 2. 写入 APT 软件源 将软件源指向国内镜像站，同时系统会自动匹配 Noble (24.04) 版本的系统代号：\necho \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null 3. 稳健安装 Docker 与 Compose 再次更新索引并执行安装。此命令不仅会安装 Docker 引擎，还会默认安装最新的 Docker Compose V2 插件：\nsudo apt-get update sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y 三、 生产环境最佳实践配置 安装完成后，需要对 Docker 进行深度优化。以下配置能够实现非 root 用户免 sudo 维护、防止宿主机磁盘被日志撑爆、以及享受腾讯云内网级别的镜像下载加速。\n1. 配置免 sudo 运行 Docker 默认情况下，非 root 用户每次执行 docker 命令都必须加 sudo。通过将当前用户加入 docker 用户组，可以安全地免除 sudo：\n# 创建 docker 用户组（通常安装时已自动创建） sudo groupadd docker # 将当前登录用户（$USER）加入组中 sudo usermod -aG docker $USER 核心提示：为了使此组策略修改生效，您需要执行 newgrp docker 命令，或者注销并重新建立 SSH 连接。\n2. 高级全局配置文件优化 (daemon.json) 创建或覆盖 Docker 的全局配置文件，集中解决镜像加速与日志暴涨问题：\nsudo vim /etc/docker/daemon.json 在文件中粘贴以下标准 JSON 配置：\n{ \"registry-mirrors\": [ \"https://mirror.ccs.tencentyun.com\", \"https://docker.m.daocloud.io\" ], \"log-driver\": \"json-file\", \"log-opts\": { \"max-size\": \"10m\", \"max-file\": \"3\" } } 配置参数深度解析： registry-mirrors：首位配置了 mirror.ccs.tencentyun.com，这是腾讯云内网镜像加速器，只有云服务器在内网访问时生效，速度极快且不消耗公网流量；第二位配置了高可用的公网备用源。\nlog-driver 与 log-opts：将每个容器的日志上限死锁在 10MB，且最多只保留 3 个历史切片文件。彻底杜绝因业务容器疯狂输出日志导致系统盘突发写满、系统崩溃的隐患。\n3. 应用配置并启动 # 重新加载 systemd 守护进程 sudo systemctl daemon-reload # 重启 Docker 服务以应用新配置 sudo systemctl restart docker # 设置开机自启 sudo systemctl enable docker 四、 整合 Caddy 实现自动化 HTTPS 逆向代理 Caddy 具备内置的 ACME 客户端，只要端口放行且域名解析正确，它就能完全自动地申请、安装、并续签由 Let’s Encrypt 或 ZeroSSL 颁发的免费 HTTPS 证书。\n1. 前置条件检查 安全组放行：必须登录腾讯云控制台，在服务器关联的“安全组”中添加入站规则，放行 80/TCP、443/TCP 以及 443/UDP（用于支持最新的 HTTP/3 协议）。 DNS 域名解析：请确保您的主域名或二级域名已添加 A 记录，并精准指向该腾讯云服务器的公网 IP。 2. 创建独立部署工程 在宿主机上建立标准的持久化目录架构：\nsudo mkdir -p /opt/caddy/config cd /opt/caddy/config 3. 编写 Caddyfile 配置文件 sudo vim Caddyfile 键入以下规范内容（请根据注释修改为您真实的域名和邮箱）：\n{ # 强烈建议配置真实邮箱，当证书续签遇到罕见故障时，Let's Encrypt 会发送通知 email your-email@example.com } # 替换为您解析好的真实域名 yourdomain.com { # 场景 A：反向代理到本地运行的伴生业务（如本地的 8080 端口） # 172.17.0.1 是 Docker 默认网桥的宿主机 IP reverse_proxy 172.17.0.1:8080 # 场景 B：如果您目前没有后端业务，只想先测试 HTTPS 是否顺畅，可取消下行注释 # respond \"Hello, Caddy Secure HTTPS HTTPS/3 works perfectly!\" } 4. 编写编排文件 docker-compose.yml sudo vim docker-compose.yml 写入以下内容，确保数据卷（Volumes）将证书数据留存至宿主机：\nversion: \"3.7\" services: caddy: image: caddy:2-alpine container_name: caddy restart: unless-stopped ports: - \"80:80\" - \"443:443\" - \"443:443/udp\" # 必须映射 UDP 端口以启用 HTTP/3 性能加速 volumes: - ./config:/etc/caddy - caddy_data:/data # 极其关键：Caddy 自动申请的证书、私钥存放于此，遗失会导致高频申请触发限流 - caddy_config:/config # 存放 Caddy 运行时的集群状态及临时配置 - /var/www/html:/var/www/html volumes: caddy_data: external: false caddy_config: external: false 5. 启动与验证 在 /opt/caddy 目录下直接执行启动命令：\ndocker compose up -d 启动后，可以实时追踪容器日志，观察 Caddy 与证书签发机构的握手状态：\ndocker compose logs -f caddy 当日志中刷出 successfully activated certificate 及 acquiring lock 成功等字样时，即代表 HTTPS 证书已在后台秒级自动申请完毕。此时通过浏览器直接敲入 [https://yourdomain.com](https://yourdomain.com)，即可享受安全的绿锁加密连接。\n5.1 证书颁发失败的解决方法 若在日志出现了“https://acme.zerossl.com/v2/DV90”，Caddy 在向 Let’s Encrypt 申请失败或触发限制后，会自动 fallback（降级）到备用机构 ZeroSSL。\n可以通过在 Caddyfile 中添加 cert_issuer acme 来解决。\n{ email your-email@example.com cert_issuer acme } # 替换为您解析好的真实域名 yourdomain.com { # 场景 A：反向代理到本地运行的伴生业务（如本地的 8080 端口） # 172.17.0.1 是 Docker 默认网桥的宿主机 IP reverse_proxy 172.17.0.1:8080 # 场景 B：如果您目前没有后端业务，只想先测试 HTTPS 是否顺畅，可取消下行注释 # respond \"Hello, Caddy Secure HTTPS HTTPS/3 works perfectly!\" } ",
+  "wordCount" : "471",
+  "inLanguage": "en",
+  "datePublished": "2026-06-08T21:34:12+08:00",
+  "dateModified": "2026-06-08T21:34:12+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Roger"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Roger's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.luojie.net/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.luojie.net/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.luojie.net/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.luojie.net/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.luojie.net/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.luojie.net/">Home</a>&nbsp;»&nbsp;<a href="https://blog.luojie.net/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南
+    </h1>
+    <div class="post-meta">2026-06-08 · 9 分钟 · 约 4440 字
+
+</div>
+  </header> 
+  <div class="post-content"><p>本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。</p>
+<p>本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。</p>
+<h2 id="一-环境清理与准备">一、 环境清理与准备<a hidden class="anchor" aria-hidden="true" href="#一-环境清理与准备">#</a></h2>
+<p>为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。</p>
+<h3 id="1-卸载冲突组件">1. 卸载冲突组件<a hidden class="anchor" aria-hidden="true" href="#1-卸载冲突组件">#</a></h3>
+<p>执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get remove docker docker-engine docker.io containerd runc
+</span></span></code></pre></div><h3 id="2-安装基础依赖包">2. 安装基础依赖包<a hidden class="anchor" aria-hidden="true" href="#2-安装基础依赖包">#</a></h3>
+<p>更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install ca-certificates curl gnupg -y
+</span></span></code></pre></div><h2 id="二-docker-核心组件安装腾讯云环境优化">二、 Docker 核心组件安装（腾讯云环境优化）<a hidden class="anchor" aria-hidden="true" href="#二-docker-核心组件安装腾讯云环境优化">#</a></h2>
+<p>由于直接连接 Docker 官方 APT 源经常遭遇 <code>Connection reset by peer</code> 错误，本步骤采用 <strong>阿里云镜像源</strong> 进行替换，以确保网络无缝连接。</p>
+<h3 id="1-配置国内镜像源-gpg-密钥">1. 配置国内镜像源 GPG 密钥<a hidden class="anchor" aria-hidden="true" href="#1-配置国内镜像源-gpg-密钥">#</a></h3>
+<p>创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">sudo install -m <span class="m">0755</span> -d /etc/apt/keyrings
+</span></span><span class="line"><span class="cl">curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span class="line"><span class="cl">sudo chmod a+r /etc/apt/keyrings/docker.gpg
+</span></span></code></pre></div><h3 id="2-写入-apt-软件源">2. 写入 APT 软件源<a hidden class="anchor" aria-hidden="true" href="#2-写入-apt-软件源">#</a></h3>
+<p>将软件源指向国内镜像站，同时系统会自动匹配 <code>Noble</code> (24.04) 版本的系统代号：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="s2">&#34;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  </span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2"> stable&#34;</span> <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span></code></pre></div><h3 id="3-稳健安装-docker-与-compose">3. 稳健安装 Docker 与 Compose<a hidden class="anchor" aria-hidden="true" href="#3-稳健安装-docker-与-compose">#</a></h3>
+<p>再次更新索引并执行安装。此命令不仅会安装 Docker 引擎，还会默认安装最新的 <strong>Docker Compose V2 插件</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+</span></span></code></pre></div><h2 id="三-生产环境最佳实践配置">三、 生产环境最佳实践配置<a hidden class="anchor" aria-hidden="true" href="#三-生产环境最佳实践配置">#</a></h2>
+<p>安装完成后，需要对 Docker 进行深度优化。以下配置能够实现<strong>非 root 用户免 sudo 维护</strong>、<strong>防止宿主机磁盘被日志撑爆</strong>、以及<strong>享受腾讯云内网级别的镜像下载加速</strong>。</p>
+<h3 id="1-配置免-sudo-运行-docker">1. 配置免 sudo 运行 Docker<a hidden class="anchor" aria-hidden="true" href="#1-配置免-sudo-运行-docker">#</a></h3>
+<p>默认情况下，非 root 用户每次执行 docker 命令都必须加 <code>sudo</code>。通过将当前用户加入 <code>docker</code> 用户组，可以安全地免除 <code>sudo</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建 docker 用户组（通常安装时已自动创建）</span>
+</span></span><span class="line"><span class="cl">sudo groupadd docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将当前登录用户（$USER）加入组中</span>
+</span></span><span class="line"><span class="cl">sudo usermod -aG docker <span class="nv">$USER</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>核心提示</strong>：为了使此组策略修改生效，您需要执行 <code>newgrp docker</code> 命令，或者<strong>注销并重新建立 SSH 连接</strong>。</p>
+</blockquote>
+<h3 id="2-高级全局配置文件优化-daemonjson">2. 高级全局配置文件优化 (<code>daemon.json</code>)<a hidden class="anchor" aria-hidden="true" href="#2-高级全局配置文件优化-daemonjson">#</a></h3>
+<p>创建或覆盖 Docker 的全局配置文件，集中解决镜像加速与日志暴涨问题：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/docker/daemon.json
+</span></span></code></pre></div><p>在文件中粘贴以下标准 JSON 配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;registry-mirrors&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://mirror.ccs.tencentyun.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://docker.m.daocloud.io&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;log-driver&#34;</span><span class="p">:</span> <span class="s2">&#34;json-file&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;log-opts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;max-size&#34;</span><span class="p">:</span> <span class="s2">&#34;10m&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;max-file&#34;</span><span class="p">:</span> <span class="s2">&#34;3&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="配置参数深度解析">配置参数深度解析：<a hidden class="anchor" aria-hidden="true" href="#配置参数深度解析">#</a></h4>
+<ul>
+<li>
+<p><strong><code>registry-mirrors</code></strong>：首位配置了 <code>mirror.ccs.tencentyun.com</code>，这是<strong>腾讯云内网镜像加速器</strong>，只有云服务器在内网访问时生效，速度极快且不消耗公网流量；第二位配置了高可用的公网备用源。</p>
+</li>
+<li>
+<p><strong><code>log-driver</code> 与 <code>log-opts</code></strong>：将每个容器的日志上限死锁在 <code>10MB</code>，且最多只保留 <code>3</code> 个历史切片文件。彻底杜绝因业务容器疯狂输出日志导致系统盘突发写满、系统崩溃的隐患。</p>
+</li>
+</ul>
+<h3 id="3-应用配置并启动">3. 应用配置并启动<a hidden class="anchor" aria-hidden="true" href="#3-应用配置并启动">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 重新加载 systemd 守护进程</span>
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启 Docker 服务以应用新配置</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置开机自启</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> docker
+</span></span></code></pre></div><h2 id="四-整合-caddy-实现自动化-https-逆向代理">四、 整合 Caddy 实现自动化 HTTPS 逆向代理<a hidden class="anchor" aria-hidden="true" href="#四-整合-caddy-实现自动化-https-逆向代理">#</a></h2>
+<p>Caddy 具备内置的 ACME 客户端，只要端口放行且域名解析正确，它就能完全自动地申请、安装、并续签由 Let&rsquo;s Encrypt 或 ZeroSSL 颁发的免费 HTTPS 证书。</p>
+<h3 id="1-前置条件检查">1. 前置条件检查<a hidden class="anchor" aria-hidden="true" href="#1-前置条件检查">#</a></h3>
+<ol>
+<li><strong>安全组放行</strong>：必须登录腾讯云控制台，在服务器关联的“安全组”中添加入站规则，放行 <strong><code>80/TCP</code></strong>、<strong><code>443/TCP</code></strong> 以及 <strong><code>443/UDP</code></strong>（用于支持最新的 HTTP/3 协议）。</li>
+<li><strong>DNS 域名解析</strong>：请确保您的主域名或二级域名已添加 <strong>A 记录</strong>，并精准指向该腾讯云服务器的公网 IP。</li>
+</ol>
+<h3 id="2-创建独立部署工程">2. 创建独立部署工程<a hidden class="anchor" aria-hidden="true" href="#2-创建独立部署工程">#</a></h3>
+<p>在宿主机上建立标准的持久化目录架构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mkdir -p /opt/caddy/config
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt/caddy/config
+</span></span></code></pre></div><h3 id="3-编写-caddyfile-配置文件">3. 编写 Caddyfile 配置文件<a hidden class="anchor" aria-hidden="true" href="#3-编写-caddyfile-配置文件">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim Caddyfile
+</span></span></code></pre></div><p>键入以下规范内容（请根据注释修改为您真实的域名和邮箱）：</p>
+<pre tabindex="0"><code class="language-config" data-lang="config">{
+    # 强烈建议配置真实邮箱，当证书续签遇到罕见故障时，Let&#39;s Encrypt 会发送通知
+    email your-email@example.com
+}
+
+# 替换为您解析好的真实域名
+yourdomain.com {
+    # 场景 A：反向代理到本地运行的伴生业务（如本地的 8080 端口）
+    # 172.17.0.1 是 Docker 默认网桥的宿主机 IP
+    reverse_proxy 172.17.0.1:8080
+
+    # 场景 B：如果您目前没有后端业务，只想先测试 HTTPS 是否顺畅，可取消下行注释
+    # respond &#34;Hello, Caddy Secure HTTPS HTTPS/3 works perfectly!&#34;
+}
+</code></pre><h3 id="4-编写编排文件docker-composeyml">4. 编写编排文件 <code>docker-compose.yml</code><a hidden class="anchor" aria-hidden="true" href="#4-编写编排文件docker-composeyml">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim docker-compose.yml
+</span></span></code></pre></div><p>写入以下内容，确保数据卷（Volumes）将证书数据留存至宿主机：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.7&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">caddy:2-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">caddy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;443:443&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;443:443/udp&#34;</span><span class="w"> </span><span class="c"># 必须映射 UDP 端口以启用 HTTP/3 性能加速</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./config:/etc/caddy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">caddy_data:/data     </span><span class="w"> </span><span class="c"># 极其关键：Caddy 自动申请的证书、私钥存放于此，遗失会导致高频申请触发限流</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">caddy_config:/config </span><span class="w"> </span><span class="c"># 存放 Caddy 运行时的集群状态及临时配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/www/html:/var/www/html</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy_data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy_config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></div><h3 id="5-启动与验证">5. 启动与验证<a hidden class="anchor" aria-hidden="true" href="#5-启动与验证">#</a></h3>
+<p>在 <code>/opt/caddy</code> 目录下直接执行启动命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></div><p>启动后，可以实时追踪容器日志，观察 Caddy 与证书签发机构的握手状态：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">docker compose logs -f caddy
+</span></span></code></pre></div><p>当日志中刷出 <code>successfully activated certificate</code> 及 <code>acquiring lock</code> 成功等字样时，即代表 HTTPS 证书已在后台秒级自动申请完毕。此时通过浏览器直接敲入 <code>[https://yourdomain.com](https://yourdomain.com)</code>，即可享受安全的绿锁加密连接。</p>
+<h4 id="51-证书颁发失败的解决方法">5.1 证书颁发失败的解决方法<a hidden class="anchor" aria-hidden="true" href="#51-证书颁发失败的解决方法">#</a></h4>
+<p>若在日志出现了“https://acme.zerossl.com/v2/DV90”，Caddy 在向 Let&rsquo;s Encrypt 申请失败或触发限制后，会自动 fallback（降级）到备用机构 <strong>ZeroSSL</strong>。</p>
+<p>可以通过在 <code>Caddyfile</code> 中添加 <code>cert_issuer acme</code> 来解决。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl">{<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">email your-email@example.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">cert_issuer acme</span><span class="w">
+</span></span></span><span class="line"><span class="cl">}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 替换为您解析好的真实域名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">yourdomain.com {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 场景 A：反向代理到本地运行的伴生业务（如本地的 8080 端口）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 172.17.0.1 是 Docker 默认网桥的宿主机 IP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">reverse_proxy 172.17.0.1:8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 场景 B：如果您目前没有后端业务，只想先测试 HTTPS 是否顺畅，可取消下行注释</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># respond &#34;Hello, Caddy Secure HTTPS HTTPS/3 works perfectly!&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl">}<span class="w">
+</span></span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.luojie.net/tags/docker/">Docker</a></li>
+      <li><a href="https://blog.luojie.net/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
+      <li><a href="https://blog.luojie.net/tags/2026/">2026</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://blog.luojie.net/posts/why-docker-volume-mounts-fail-on-reload/">
+    <span class="title">Next »</span>
+    <br>
+    <span>由 Docker 的“坑”深入理解 Linux Inode 机制</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on x"
+            href="https://x.com/intent/tweet/?text=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f&amp;hashtags=docker%2c%e6%8a%80%e6%9c%af%2c2026">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f&amp;title=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97&amp;summary=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97&amp;source=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f&title=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97%20-%20https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on telegram"
+            href="https://telegram.me/share/url?text=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e8%85%be%e8%ae%af%e4%ba%91%20Ubuntu%2024.04%20%e5%ae%89%e8%a3%85%20Docker%20%e4%b8%8e%20Caddy%20%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5%e6%8c%87%e5%8d%97&u=https%3a%2f%2fblog.luojie.net%2fposts%2fbest-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer><script src="https://utteranc.es/client.js"
+        repo="luojiego/luojiego.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.luojie.net/">Roger&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

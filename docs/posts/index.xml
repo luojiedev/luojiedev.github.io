@@ -6,8 +6,29 @@
     <description>Recent content in Posts on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jun 2026 21:43:46 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2026 21:34:12 +0800</lastBuildDate>
     <atom:link href="https://blog.luojie.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>腾讯云 Ubuntu 24.04 安装 Docker 与 Caddy 最佳实践指南</title>
+      <link>https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/</link>
+      <pubDate>Mon, 08 Jun 2026 21:34:12 +0800</pubDate>
+      <guid>https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/</guid>
+      <description>&lt;p&gt;本文通过 AI 生成，主要用我个人快速安装软件使用，并备注了 https 证书无法颁发的解决办法。&lt;/p&gt;
+&lt;p&gt;本指南专门针对腾讯云 Ubuntu 24.04 LTS (Noble Numbat) 环境编写，完美避开了国内网络访问 Docker 官方源被重置的痛点，采用国内大厂加速方案，并整合了 Caddy 自动化 HTTPS 服务的标准生产级部署流程。&lt;/p&gt;
+&lt;h2 id=&#34;一-环境清理与准备&#34;&gt;一、 环境清理与准备&lt;/h2&gt;
+&lt;p&gt;为了防止 Ubuntu 系统自带的旧版本组件（或 Snap 包）与官方最新版本发生冲突，在安装前必须对环境进行清理。&lt;/p&gt;
+&lt;h3 id=&#34;1-卸载冲突组件&#34;&gt;1. 卸载冲突组件&lt;/h3&gt;
+&lt;p&gt;执行以下命令，安全移除系统中可能存在的旧版 Docker 核心及容器运行时：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get remove docker docker-engine docker.io containerd runc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-安装基础依赖包&#34;&gt;2. 安装基础依赖包&lt;/h3&gt;
+&lt;p&gt;更新本地软件包索引，并安装支持 HTTPS 传输、证书管理及网络下载的基础工具：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install ca-certificates curl gnupg -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;二-docker-核心组件安装腾讯云环境优化&#34;&gt;二、 Docker 核心组件安装（腾讯云环境优化）&lt;/h2&gt;
+&lt;p&gt;由于直接连接 Docker 官方 APT 源经常遭遇 &lt;code&gt;Connection reset by peer&lt;/code&gt; 错误，本步骤采用 &lt;strong&gt;阿里云镜像源&lt;/strong&gt; 进行替换，以确保网络无缝连接。&lt;/p&gt;
+&lt;h3 id=&#34;1-配置国内镜像源-gpg-密钥&#34;&gt;1. 配置国内镜像源 GPG 密钥&lt;/h3&gt;
+&lt;p&gt;创建专门的密钥存放目录，并下载经过安全校验的 Docker 密钥：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>由 Docker 的“坑”深入理解 Linux Inode 机制</title>
       <link>https://blog.luojie.net/posts/why-docker-volume-mounts-fail-on-reload/</link>

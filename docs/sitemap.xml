@@ -3,22 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.luojie.net/tags/2026/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/tags/docker/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/posts/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/tags/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/tags/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2026-06-05T21:43:46+08:00</lastmod>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.luojie.net/posts/best-practices-for-installing-docker-and-caddy-on-tencent-clound-ubuntu-24/</loc>
+    <lastmod>2026-06-08T21:34:12+08:00</lastmod>
   </url><url>
     <loc>https://blog.luojie.net/posts/why-docker-volume-mounts-fail-on-reload/</loc>
     <lastmod>2026-06-05T21:43:46+08:00</lastmod>
