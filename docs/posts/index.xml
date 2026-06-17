@@ -6,8 +6,45 @@
     <description>Recent content in Posts on Roger&#39;s Blog</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Jun 2026 14:25:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 22:58:46 +0800</lastBuildDate>
     <atom:link href="https://blog.luojie.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Cloudflare 和 Resend 实现自定义邮件收发</title>
+      <link>https://blog.luojie.net/posts/cloudflare-resend-custom-email/</link>
+      <pubDate>Wed, 17 Jun 2026 22:58:46 +0800</pubDate>
+      <guid>https://blog.luojie.net/posts/cloudflare-resend-custom-email/</guid>
+      <description>&lt;p&gt;如果你拥有一个域名，不配置个性邮箱地址那就太可惜了。通过 Cloudflare + Resend 可以实现个性邮箱的收发功能。&lt;/p&gt;
+&lt;p&gt;如果你拥有域名 mydomain.com，那你可以设置你的邮箱地址为 &lt;a href=&#34;mailto:i@mydomain.com&#34;&gt;i@mydomain.com&lt;/a&gt; 或者 &lt;a href=&#34;mailto:me@mydomain.com&#34;&gt;me@mydomain.com&lt;/a&gt; 是不是显得高大上了很多。&lt;/p&gt;
+&lt;p&gt;Cloudflare 和 Resend 提供的免费功能都足够支持普通用户来正常使用，并且两个平台均在注册时不需要提前准备支付信息。&lt;/p&gt;
+&lt;h1 id=&#34;1-前置条件&#34;&gt;1. 前置条件&lt;/h1&gt;
+&lt;p&gt;拥有自己的域名，可以是在腾讯云/阿里云这些平台注册，但&lt;strong&gt;必须将 DNS  托管在 Cloudflare&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;需要注册的账号有 Cloudflare、Resend 以及 Github 账号，需要有访问外网的能力。&lt;/p&gt;
+&lt;h1 id=&#34;2-cloudflare-邮件路由设置&#34;&gt;2. Cloudflare 邮件路由设置&lt;/h1&gt;
+&lt;h2 id=&#34;21-添加目标地址&#34;&gt;2.1 添加目标地址&lt;/h2&gt;
+&lt;p&gt;将要转发的邮箱正确的配置在“邮件路由-&amp;gt;目标地址”中，Cloudflare 最多支持&lt;strong&gt;配置 200 个目标地址&lt;/strong&gt;，绝对够用了。输入邮件地址，点击“添加地址”按钮，目标邮箱会收到一封验证邮件，在邮件中点击跳转即可。&lt;br&gt;
+&lt;img alt=&#34;2.1 添加目标地址&#34; loading=&#34;lazy&#34; src=&#34;https://static.luojie.net/articles/cloudflare-resend-custom-email/20260615101913.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;22-邮件路由&#34;&gt;2.2 邮件路由&lt;/h2&gt;
+&lt;h3 id=&#34;221-选择在-cloudflare-托管的域名&#34;&gt;2.2.1 选择在 Cloudflare 托管的域名&lt;/h3&gt;
+&lt;p&gt;“邮件路由”&lt;br&gt;
+&lt;img alt=&#34;2.2.1 选择在 Cloudflare 托管的域名&#34; loading=&#34;lazy&#34; src=&#34;https://static.luojie.net/articles/cloudflare-resend-custom-email/20260615102425.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;222-选择域名&#34;&gt;2.2.2 选择域名&lt;/h3&gt;
+&lt;p&gt;不出意外，会显示“一切看起来正常”，点击“完成”，到下一步。&lt;br&gt;
+&lt;img alt=&#34;2.2.2 选择域名&#34; loading=&#34;lazy&#34; src=&#34;https://static.luojie.net/articles/cloudflare-resend-custom-email/20260615102517.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;223-等待-dns-同步&#34;&gt;2.2.3 等待 DNS 同步&lt;/h3&gt;
+&lt;p&gt;注意：我的截图中有两个域名，是因为我配置了两个，如果你是第一次配置，此处应该只会展示你刚才添加的域名。&lt;br&gt;
+&lt;img alt=&#34;2.2.3 等待 DNS 同步&#34; loading=&#34;lazy&#34; src=&#34;https://static.luojie.net/articles/cloudflare-resend-custom-email/20260615102559.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;224-dns-同步成功&#34;&gt;2.2.4 DNS 同步成功&lt;/h3&gt;
+&lt;p&gt;状态，变成“已启用”，表示，这一步成功，大概需要一分钟左右的时间。&lt;br&gt;
+点击“名称”，也即你添加的域名。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;2.2.4 DNS 同步成功&#34; loading=&#34;lazy&#34; src=&#34;https://static.luojie.net/articles/cloudflare-resend-custom-email/20260615102630.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;225-创建路由规则&#34;&gt;2.2.5 创建路由规则&lt;/h3&gt;
+&lt;p&gt;点击“路由规则”-&amp;gt;“创建路由规则”，以下 4 个位置，请注意填写和选择。&lt;br&gt;
+“电子邮件匹配模式”，因为是你自己的域名，越短越好，我一般填写成“i”，当然也可以填写为“me”等。&lt;br&gt;
+“域名”选项选择你刚才添加的域名。&lt;br&gt;
+“操作”选项选择“发送到电子邮件”。&lt;br&gt;
+“目标”选项里面添加你要转发到的邮件。&lt;br&gt;
+点击“保存”。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>享受平凡《主角》电视剧观后感</title>
       <link>https://blog.luojie.net/posts/the-spotlight-on-the-ordinary-finding-the-protagonist-within/</link>
