@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Cloudflare | Roger&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Roger 的个人博客">
+<meta name="author" content="Roger">
+<link rel="canonical" href="https://blog.luojie.net/tags/cloudflare/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.0e5d6dc76b835c8dd8952a3e208138272856ca7781a17e058123153dbcd6a4c8.css" integrity="sha256-Dl1tx2uDXI3YlSo&#43;IIE4JyhWyneBoX4FgSMVPbzWpMg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.luojie.net/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.luojie.net/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.luojie.net/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.luojie.net/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.luojie.net/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://blog.luojie.net/tags/cloudflare/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://blog.luojie.net/tags/cloudflare/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEV0Q1G3S5"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-BEV0Q1G3S5');
+        }
+      </script><meta property="og:url" content="https://blog.luojie.net/tags/cloudflare/">
+  <meta property="og:site_name" content="Roger&#39;s Blog">
+  <meta property="og:title" content="Cloudflare">
+  <meta property="og:description" content="Roger 的个人博客">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cloudflare">
+<meta name="twitter:description" content="Roger 的个人博客">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.luojie.net/" accesskey="h" title="Roger&#39;s Blog (Alt + H)">Roger&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.luojie.net/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.luojie.net/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.luojie.net/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://blog.luojie.net/">Home</a>&nbsp;»&nbsp;<a href="https://blog.luojie.net/tags/">Tags</a></div>
+  <h1>
+    Cloudflare
+    <a href="/tags/cloudflare/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">使用 Cloudflare 和 Resend 实现自定义邮件收发
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>如果你拥有一个域名，不配置个性邮箱地址那就太可惜了。通过 Cloudflare &#43; Resend 可以实现个性邮箱的收发功能。
+如果你拥有域名 mydomain.com，那你可以设置你的邮箱地址为 i@mydomain.com 或者 me@mydomain.com 是不是显得高大上了很多。
+Cloudflare 和 Resend 提供的免费功能都足够支持普通用户来正常使用，并且两个平台均在注册时不需要提前准备支付信息。
+1. 前置条件 拥有自己的域名，可以是在腾讯云/阿里云这些平台注册，但必须将 DNS 托管在 Cloudflare。
+需要注册的账号有 Cloudflare、Resend 以及 Github 账号，需要有访问外网的能力。
+2. Cloudflare 邮件路由设置 2.1 添加目标地址 将要转发的邮箱正确的配置在“邮件路由-&gt;目标地址”中，Cloudflare 最多支持配置 200 个目标地址，绝对够用了。输入邮件地址，点击“添加地址”按钮，目标邮箱会收到一封验证邮件，在邮件中点击跳转即可。
+2.2 邮件路由 2.2.1 选择在 Cloudflare 托管的域名 “邮件路由”
+2.2.2 选择域名 不出意外，会显示“一切看起来正常”，点击“完成”，到下一步。
+2.2.3 等待 DNS 同步 注意：我的截图中有两个域名，是因为我配置了两个，如果你是第一次配置，此处应该只会展示你刚才添加的域名。
+2.2.4 DNS 同步成功 状态，变成“已启用”，表示，这一步成功，大概需要一分钟左右的时间。
+点击“名称”，也即你添加的域名。
+2.2.5 创建路由规则 点击“路由规则”-&gt;“创建路由规则”，以下 4 个位置，请注意填写和选择。
+“电子邮件匹配模式”，因为是你自己的域名，越短越好，我一般填写成“i”，当然也可以填写为“me”等。
+“域名”选项选择你刚才添加的域名。
+“操作”选项选择“发送到电子邮件”。
+“目标”选项里面添加你要转发到的邮件。
+点击“保存”。
+...</p>
+  </div>
+  <footer class="entry-footer">2026-06-17 · 9 分钟 · 约 4625 字</footer>
+  <a class="entry-link" aria-label="post link to 使用 Cloudflare 和 Resend 实现自定义邮件收发" href="https://blog.luojie.net/posts/cloudflare-resend-custom-email/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.luojie.net/">Roger&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
